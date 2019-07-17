@@ -10,10 +10,16 @@ ext {
     testRulesVersion = '1.2.0-beta01'
     testFragmentVersion = '1.1.0-alpha07'
     androidxTestCoreVersion = '1.2.0-beta01'
+    androidXAnnotationsVersion = '1.0.1'
+    androidXLegacySupportVersion = '1.0.0'
+    recyclerViewVersion = '1.0.0'
+    appcompatVersion = '1.0.2'
+    materialVersion = '1.0.0'
 
     junitPackage = 'junit'
     espressoPackage = 'androidx.test.espresso'
     androidxTestPackage = 'androidx.test'
+    robolectricPackage = 'org.robolectric'
 
     androidxDependencies = [
             material : buildDependency('com.google.android.material', 'material', '1.0.0'),
@@ -21,18 +27,27 @@ ext {
     ]
 
     testingDependencies = [
-            junit          : buildDependency(junitPackage, 'junit', junitVersion),
-            testRunner     : buildDependency(androidxTestPackage, 'runner', androidXVersion),
-            rules          : buildDependency(androidxTestPackage, 'rules', testRulesVersion),
-            core           : buildDependency(androidxTestPackage, 'core', androidxTestCoreVersion),
-            espresso       : buildDependency(espressoPackage, 'espresso-core', espressoVersion),
-            espressoContrib: buildDependency(espressoPackage, 'espresso-contrib', espressoVersion),
-            espressoIntents: buildDependency(espressoPackage, 'espresso-intents', espressoVersion),
-            hamcrest       : buildDependency('org.hamcrest', 'hamcrest-all', hamcrestVersion),
-            arch           : buildDependency('androidx.arch.core', 'core-testing', archTestingVersion),
-            robolectric    : buildDependency('org.robolectric', 'robolectric', robolectricVersion),
-            truth          : buildDependency('com.google.truth', 'truth', truthVersion),
-            fragment       : buildDependency('androidx.fragment', 'fragment-testing', testFragmentVersion),
+            junit                   : buildDependency(junitPackage, 'junit', junitVersion),
+            testRunner              : buildDependency(androidxTestPackage, 'runner', androidXVersion),
+            rules                   : buildDependency(androidxTestPackage, 'rules', testRulesVersion),
+            core                    : buildDependency(androidxTestPackage, 'core', androidxTestCoreVersion),
+            espresso                : buildDependency(espressoPackage, 'espresso-core', espressoVersion),
+            espressoContrib         : buildDependency(espressoPackage, 'espresso-contrib', espressoVersion),
+            espressoIntents         : buildDependency(espressoPackage, 'espresso-intents', espressoVersion),
+            espressoIdlingResource  : buildDependency(espressoPackage, 'espresso-idling-resource', espressoVersion),
+            espressoIdlingConcurrent: buildDependency('androidx.test.espresso.idling', 'idling-concurrent', espressoVersion),
+            hamcrest                : buildDependency('org.hamcrest', 'hamcrest-all', hamcrestVersion),
+            arch                    : buildDependency('androidx.arch.core', 'core-testing', archTestingVersion),
+            robolectric             : buildDependency(robolectricPackage, 'robolectric', robolectricVersion),
+            robolectricAnnotation   : buildDependency(robolectricPackage, 'annotations', robolectricVersion),
+            truth                   : buildDependency('com.google.truth', 'truth', truthVersion),
+            fragment                : buildDependency('androidx.fragment', 'fragment-testing', testFragmentVersion),
+            testAnnotation          : buildDependency('androidx.annotation', 'annotation', androidXAnnotationsVersion),
+            legacySupport           : buildDependency('androidx.legacy', 'legacy-support-v4', androidXLegacySupportVersion),
+            recyclerview            : buildDependency('androidx.recyclerview', 'recyclerview', recyclerViewVersion),
+            appCompat               : buildDependency('androidx.appcompat', 'appcompat', appcompatVersion),
+            material                : buildDependency('com.google.android.material', 'material', materialVersion)
+
     ]
 }
 

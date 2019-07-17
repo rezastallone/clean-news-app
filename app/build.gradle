@@ -27,6 +27,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation androidxDependencies.appCompat
 
+    implementation testingDependencies.espressoIdlingResource
+
     testImplementation testingDependencies.junit
     testImplementation testingDependencies.hamcrest
     testImplementation testingDependencies.arch
@@ -41,5 +43,17 @@ dependencies {
     implementation testingDependencies.core
 
     androidTestImplementation testingDependencies.testRunner
+    androidTestImplementation testingDependencies.arch
+    androidTestImplementation testingDependencies.robolectricAnnotation
     androidTestImplementation testingDependencies.espresso
+    androidTestImplementation testingDependencies.espressoContrib
+    androidTestImplementation testingDependencies.espressoIntents
+    androidTestImplementation testingDependencies.espressoIdlingConcurrent
+    androidTestImplementation testingDependencies.rules
+    // Resolve conflicts between main and test APK:
+    androidTestImplementation testingDependencies.testAnnotation
+    androidTestImplementation testingDependencies.legacySupport
+    androidTestImplementation testingDependencies.recyclerview
+    androidTestImplementation testingDependencies.appCompat
+    androidTestImplementation testingDependencies.material
 }
