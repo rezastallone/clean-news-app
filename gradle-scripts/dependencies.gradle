@@ -2,21 +2,20 @@ ext {
 
     androidXVersion = '1.0.2'
     espressoVersion = '3.2.0'
-    junitVersion = '4.12'
     hamcrestVersion = '1.3'
     archTestingVersion = '2.0.0'
     robolectricVersion = '4.3-beta-1'
     truthVersion = '0.44'
     testRulesVersion = '1.2.0-beta01'
     testFragmentVersion = '1.1.0-alpha07'
-    androidxTestCoreVersion = '1.2.0-beta01'
+    androidxTestCoreVersion = '1.2.0'
     androidXAnnotationsVersion = '1.0.1'
     androidXLegacySupportVersion = '1.0.0'
     recyclerViewVersion = '1.0.0'
     appcompatVersion = '1.0.2'
     materialVersion = '1.0.0'
 
-    junitPackage = 'junit'
+    testExtPackage = 'androidx.test.ext'
     espressoPackage = 'androidx.test.espresso'
     androidxTestPackage = 'androidx.test'
     robolectricPackage = 'org.robolectric'
@@ -27,8 +26,8 @@ ext {
     ]
 
     testingDependencies = [
-            junit                   : buildDependency(junitPackage, 'junit', junitVersion),
-            testRunner              : buildDependency(androidxTestPackage, 'runner', androidXVersion),
+            junitExt                : buildDependency(testExtPackage, 'junit', '1.0.0'),
+            testRunner              : buildDependency(androidxTestPackage, 'runner', '1.1.0'),
             rules                   : buildDependency(androidxTestPackage, 'rules', testRulesVersion),
             core                    : buildDependency(androidxTestPackage, 'core', androidxTestCoreVersion),
             espresso                : buildDependency(espressoPackage, 'espresso-core', espressoVersion),
