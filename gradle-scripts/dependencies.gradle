@@ -1,0 +1,23 @@
+ext {
+
+    androidXVersion = '1.0.2'
+    espressoVersion = '3.2.0'
+    junitVersion = '4.12'
+
+    junitPackage = 'junit'
+
+    androidxDependencies = [
+            material  : buildDependency('com.google.android.material', 'material', '1.0.0'),
+            appCompat : buildDependency('androidx.appcompat', 'appcompat', androidXVersion)
+    ]
+
+    testingDependencies = [
+            junit      : buildDependency(junitPackage, 'junit', junitVersion),
+            testRunner : buildDependency('androidx.test','runner',androidXVersion),
+            espresso : buildDependency('androidx.test.espresso','espresso-core',espressoVersion)
+    ]
+}
+
+static String buildDependency(String pack, String dependency, String version) {
+    return "${pack}:${dependency}:${version}"
+}
