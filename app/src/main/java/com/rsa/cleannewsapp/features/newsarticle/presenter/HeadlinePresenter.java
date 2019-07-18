@@ -46,6 +46,5 @@ public class HeadlinePresenter extends Presenter<HeadlineView> {
     public void destroy() {
         this.getHeadline.dispose();
         setView(null);
-
     }
 }
