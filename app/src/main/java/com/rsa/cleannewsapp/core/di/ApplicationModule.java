@@ -12,10 +12,14 @@ import com.rsa.cleannewsapp.features.newsarticle.repository.NewsArticleRepositor
 
 import android.content.Context;
 
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 
 @Module
@@ -49,6 +53,18 @@ public class ApplicationModule {
     @Singleton
     NewsArticleRepository provideNewsArticleRepository(NewsApi newsApi) {
         return new DefaultNewsArticleRepository(newsApi);
+    }
+
+    @Provides
+    @Named("executor_thread")
+    Scheduler provideExecutorThread() {
+        return Schedulers.io();
+    }
+
+    @Provides
+    @Named("ui_thread")
+    Scheduler provideUiThread() {
+        return AndroidSchedulers.mainThread();
     }
 
     @Provides
