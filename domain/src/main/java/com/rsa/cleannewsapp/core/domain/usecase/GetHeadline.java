@@ -1,8 +1,7 @@
-package com.rsa.cleannewsapp.features.newsarticle.usecase;
+package com.rsa.cleannewsapp.core.domain.usecase;
 
-import com.rsa.cleannewsapp.core.data.entity.NewsArticles;
-import com.rsa.cleannewsapp.core.domain.UseCase;
-import com.rsa.cleannewsapp.features.newsarticle.repository.NewsArticleRepository;
+import com.rsa.cleannewsapp.core.domain.entity.NewsArticles;
+import com.rsa.cleannewsapp.core.domain.repository.NewsArticleRepository;
 
 import javax.inject.Inject;
 import javax.inject.Named;

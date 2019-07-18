@@ -1,6 +1,7 @@
 package com.rsa.cleannewsapp.features.newsarticle.repository;
 
-import com.rsa.cleannewsapp.core.data.entity.NewsArticles;
+import com.rsa.cleannewsapp.core.domain.entity.NewsArticles;
+import com.rsa.cleannewsapp.core.domain.repository.NewsArticleRepository;
 import com.rsa.cleannewsapp.features.newsarticle.remote.NewsApi;
 
 import io.reactivex.Observable;
@@ -16,6 +17,6 @@ public class DefaultNewsArticleRepository implements NewsArticleRepository {
 
     @Override
     public Observable<NewsArticles> headlines(String country) {
-        return newsApi.headlines(country);
+        return newsApi.headlines("id");
     }
 }

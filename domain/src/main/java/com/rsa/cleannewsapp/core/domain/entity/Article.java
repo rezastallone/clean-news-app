@@ -1,4 +1,4 @@
-package com.rsa.cleannewsapp.core.data.entity;
+package com.rsa.cleannewsapp.core.domain.entity;
 
 public class Article {
 

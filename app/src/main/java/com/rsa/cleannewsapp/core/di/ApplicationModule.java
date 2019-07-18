@@ -5,10 +5,10 @@ import com.google.gson.GsonBuilder;
 
 import com.rsa.cleannewsapp.CleanNewsApplication;
 import com.rsa.cleannewsapp.core.data.remote.RemoteServiceFactory;
+import com.rsa.cleannewsapp.core.domain.repository.NewsArticleRepository;
 import com.rsa.cleannewsapp.features.newsarticle.remote.NewsApi;
 import com.rsa.cleannewsapp.features.newsarticle.remote.NewsService;
 import com.rsa.cleannewsapp.features.newsarticle.repository.DefaultNewsArticleRepository;
-import com.rsa.cleannewsapp.features.newsarticle.repository.NewsArticleRepository;
 
 import android.content.Context;
 

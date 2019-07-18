@@ -28,7 +28,7 @@ public class DefaultNewsArticleRepositoryTest {
 
     @Test
     public void givenAConcreteNewsArticleRepository() {
-        assertThat(defaultNewsArticleRepository, instanceOf(NewsArticleRepository.class));
+        assertThat(defaultNewsArticleRepository, instanceOf(DefaultNewsArticleRepository.class));
     }
 
     @Test

@@ -1,8 +1,8 @@
 package com.rsa.cleannewsapp.features.newsarticle.presenter;
 
-import com.rsa.cleannewsapp.core.data.entity.NewsArticles;
+import com.rsa.cleannewsapp.core.domain.entity.NewsArticles;
 import com.rsa.cleannewsapp.core.presenter.Presenter;
-import com.rsa.cleannewsapp.features.newsarticle.usecase.GetHeadline;
+import com.rsa.cleannewsapp.core.domain.usecase.GetHeadline;
 import com.rsa.cleannewsapp.features.newsarticle.view.HeadlineView;
 
 import javax.inject.Inject;

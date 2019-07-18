@@ -3,7 +3,7 @@ package com.rsa.cleannewsapp.features.newsarticle.view;
 import com.rsa.cleannewsapp.CleanNewsApplication;
 import com.rsa.cleannewsapp.R;
 import com.rsa.cleannewsapp.core.BaseFragment;
-import com.rsa.cleannewsapp.core.data.entity.NewsArticles;
+import com.rsa.cleannewsapp.core.domain.entity.NewsArticles;
 import com.rsa.cleannewsapp.features.newsarticle.adapter.NewsArticleAdapter;
 import com.rsa.cleannewsapp.features.newsarticle.presenter.HeadlinePresenter;
 

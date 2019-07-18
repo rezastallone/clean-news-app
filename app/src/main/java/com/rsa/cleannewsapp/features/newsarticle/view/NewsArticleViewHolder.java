@@ -3,7 +3,7 @@ package com.rsa.cleannewsapp.features.newsarticle.view;
 import com.bumptech.glide.Glide;
 import com.rsa.cleannewsapp.R;
 import com.rsa.cleannewsapp.core.common.Action;
-import com.rsa.cleannewsapp.core.data.entity.Article;
+import com.rsa.cleannewsapp.core.domain.entity.Article;
 
 import android.view.LayoutInflater;
 import android.view.View;
