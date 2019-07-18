@@ -15,7 +15,7 @@ public class DefaultNewsArticleRepository implements NewsArticleRepository {
     }
 
     @Override
-    public Observable<NewsArticles> articles() {
-        return newsApi.articles();
+    public Observable<NewsArticles> headlines() {
+        return newsApi.headlines();
     }
 }

@@ -10,5 +10,5 @@ public interface NewsApi {
     String HEADLINES = "top-headlines";
 
     @GET(HEADLINES)
-    Observable<NewsArticles> articles();
+    Observable<NewsArticles> headlines();
 }

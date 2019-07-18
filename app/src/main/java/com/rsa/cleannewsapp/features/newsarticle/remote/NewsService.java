@@ -14,7 +14,7 @@ public class NewsService implements NewsApi {
     }
 
     @Override
-    public Observable<NewsArticles> articles() {
-        return newsApi.articles();
+    public Observable<NewsArticles> headlines() {
+        return newsApi.headlines();
     }
 }
