@@ -16,14 +16,14 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "NEWS_API_KEY", "3a8f068cf53c400d93fb90e9e1320b49")
-            buildConfigField("String", "NEWS_API_DOMAIN", "https://newsapi.org")
-            buildConfigField("String", "NEWS_API_VERSION", "v2")
+            buildConfigField("String", "NEWS_API_KEY", '"3a8f068cf53c400d93fb90e9e1320b49"')
+            buildConfigField("String", "NEWS_API_DOMAIN", '"https://newsapi.org"')
+            buildConfigField("String", "NEWS_API_VERSION", '"v2"')
         }
         debug {
-            buildConfigField("String", "NEWS_API_KEY", "3a8f068cf53c400d93fb90e9e1320b49")
-            buildConfigField("String", "NEWS_API_DOMAIN", "https://newsapi.org")
-            buildConfigField("String", "NEWS_API_VERSION", "v2")
+            buildConfigField("String", "NEWS_API_KEY", '"3a8f068cf53c400d93fb90e9e1320b49"')
+            buildConfigField("String", "NEWS_API_DOMAIN", '"https://newsapi.org"')
+            buildConfigField("String", "NEWS_API_VERSION", '"v2"')
         }
     }
     sourceSets {
@@ -57,6 +57,8 @@ dependencies {
     implementation mainApplication.material
     implementation mainApplication.constrainLayout
     implementation mainApplication.dagger
+    implementation mainApplication.rxjavaAndroid
+    implementation mainApplication.rxjava
     annotationProcessor mainApplication.daggerCompiler
 
     // Once https://issuetracker.google.com/127986458 is fixed this can be testImplementation
