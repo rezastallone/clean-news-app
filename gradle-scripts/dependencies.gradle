@@ -15,6 +15,7 @@ ext {
     appcompatVersion = '1.0.2'
     materialVersion = '1.0.0'
     daggerVersion = '2.23.2'
+    butterKnifeVersion = '10.0.1'
 
     testExtPackage = 'androidx.test.ext'
     espressoPackage = 'androidx.test.espresso'
@@ -23,11 +24,11 @@ ext {
     daggerPackage = 'com.google.dagger'
     rxjavaPackage = 'io.reactivex.rxjava2'
     retrofitPackage = 'com.squareup.retrofit2'
+    jakeWhartonPackage = 'com.jakewharton'
 
     androidxDependencies = [
             appCompat: buildDependency('androidx.appcompat', 'appcompat', androidXVersion)
     ]
-
 
     mainApplication = [
             retrofit                 : buildDependency(retrofitPackage, 'retrofit', '2.6.0'),
@@ -41,6 +42,8 @@ ext {
             daggerCompiler           : buildDependency(daggerPackage, 'dagger-compiler', daggerVersion),
             rxjava                   : buildDependency(rxjavaPackage, 'rxjava', '2.2.10'),
             rxjavaAndroid            : buildDependency(rxjavaPackage, 'rxandroid', '2.1.1'),
+            butterKnife              : buildDependency(jakeWhartonPackage, 'butterknife', butterKnifeVersion),
+            butterKnifeAnnotation    : buildDependency(jakeWhartonPackage, 'butterknife-compiler', butterKnifeVersion)
     ]
 
     testingDependencies = [
