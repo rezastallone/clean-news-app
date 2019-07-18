@@ -2,21 +2,21 @@ package com.rsa.cleannewsapp.core.data.entity;
 
 public class Article {
 
-    final String author;
+    public final String author;
 
-    final String content;
+    public final String content;
 
-    final String description;
+    public final String description;
 
-    final String publishedAt;
+    public final String publishedAt;
 
-    final Source source;
+    public final Source source;
 
-    final String title;
+    public final String title;
 
-    final String url;
+    public final String url;
 
-    final String urlToImage;
+    public final String urlToImage;
 
     public Article(Source source, String author, String title, String description,
         String url, String urlToImage, String publishedAt, String content) {
