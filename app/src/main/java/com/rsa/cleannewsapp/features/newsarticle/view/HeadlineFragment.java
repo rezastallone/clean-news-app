@@ -1,5 +1,6 @@
 package com.rsa.cleannewsapp.features.newsarticle.view;
 
+import com.rsa.cleannewsapp.CleanNewsApplication;
 import com.rsa.cleannewsapp.R;
 import com.rsa.cleannewsapp.core.BaseFragment;
 import com.rsa.cleannewsapp.core.data.entity.NewsArticles;
@@ -31,7 +32,13 @@ public class HeadlineFragment extends BaseFragment implements HeadlineView {
     @Override
     public void initView() {
         super.initView();
+        initializeDagger();
+    }
 
+    private void initializeDagger() {
+        CleanNewsApplication cleanNewsApplication = (CleanNewsApplication) getActivity()
+            .getApplication();
+        cleanNewsApplication.getApplicationComponent().inject(this);
     }
 
     @Override
