@@ -23,6 +23,6 @@ public class GetHeadline extends UseCase<NewsArticles> {
 
     @Override
     protected Observable<NewsArticles> createObservableUseCase() {
-        return newsArticleRepository.articles();
+        return newsArticleRepository.headlines();
     }
 }
