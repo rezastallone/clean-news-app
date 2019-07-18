@@ -86,6 +86,7 @@ dependencies {
     testImplementation testingDependencies.espressoIntents
     testImplementation testingDependencies.truth
     testImplementation testingDependencies.rules
+    testImplementation testingDependencies.mockito
 
     androidTestImplementation testingDependencies.junitExt
     androidTestImplementation testingDependencies.testRunner

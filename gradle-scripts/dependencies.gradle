@@ -17,6 +17,7 @@ ext {
     daggerVersion = '2.23.2'
     butterKnifeVersion = '10.1.0'
     glideVersion = '4.9.0'
+    mockitoVersion = '1.10.19'
 
     testExtPackage = 'androidx.test.ext'
     espressoPackage = 'androidx.test.espresso'
@@ -27,6 +28,7 @@ ext {
     retrofitPackage = 'com.squareup.retrofit2'
     jakeWhartonPackage = 'com.jakewharton'
     glidePackage = 'com.github.bumptech.glide'
+    mockitoPackage = 'org.mockito'
 
     androidxDependencies = [
             appCompat: buildDependency('androidx.appcompat', 'appcompat', androidXVersion)
@@ -70,6 +72,7 @@ ext {
             legacySupport           : buildDependency('androidx.legacy', 'legacy-support-v4', androidXLegacySupportVersion),
             recyclerview            : buildDependency('androidx.recyclerview', 'recyclerview', recyclerViewVersion),
             appCompat               : buildDependency('androidx.appcompat', 'appcompat', appcompatVersion),
+            mockito                 : buildDependency(mockitoPackage, 'mockito-core', mockitoVersion),
 
     ]
 }
