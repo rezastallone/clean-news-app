@@ -1,6 +1,7 @@
 package com.rsa.cleannewsapp.core.data.remote;
 
-import com.rsa.cleannewsapp.BuildConfig;
+
+import com.rsa.cleannewsapp.core.data.BuildConfig;
 
 import java.io.IOException;
 

@@ -2,7 +2,7 @@ package com.rsa.cleannewsapp.core.data.remote;
 
 import com.google.gson.Gson;
 
-import com.rsa.cleannewsapp.BuildConfig;
+import com.rsa.cleannewsapp.core.data.BuildConfig;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;

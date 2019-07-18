@@ -1,8 +1,8 @@
-package com.rsa.cleannewsapp.features.newsarticle.repository;
+package com.rsa.cleannewsapp.core.data.repository;
 
+import com.rsa.cleannewsapp.core.data.remote.NewsApi;
 import com.rsa.cleannewsapp.core.domain.entity.NewsArticles;
 import com.rsa.cleannewsapp.core.domain.repository.NewsArticleRepository;
-import com.rsa.cleannewsapp.features.newsarticle.remote.NewsApi;
 
 import io.reactivex.Observable;
 

@@ -1,4 +1,4 @@
-package com.rsa.cleannewsapp.features.newsarticle.remote;
+package com.rsa.cleannewsapp.core.data.remote;
 
 
 import com.rsa.cleannewsapp.core.domain.entity.NewsArticles;

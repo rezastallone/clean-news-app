@@ -56,18 +56,21 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':domain')
+    implementation project(':data')
 
     implementation androidxDependencies.appCompat
     implementation testingDependencies.espressoIdlingResource
-    implementation mainApplication.retrofit
     implementation mainApplication.material
     implementation mainApplication.constrainLayout
     implementation mainApplication.dagger
+
+    implementation mainApplication.retrofit
     implementation mainApplication.rxjavaAndroid
     implementation mainApplication.rxjava
     implementation mainApplication.retrofitRxAdapter
     implementation mainApplication.retrofitGsonAdapter
     implementation mainApplication.retrofitLogginInterceptor
+
     implementation mainApplication.butterKnife
     implementation mainApplication.glide
     annotationProcessor mainApplication.daggerCompiler
