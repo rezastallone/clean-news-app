@@ -16,6 +16,7 @@ ext {
     materialVersion = '1.0.0'
     daggerVersion = '2.23.2'
     butterKnifeVersion = '10.1.0'
+    glideVersion = '4.9.0'
 
     testExtPackage = 'androidx.test.ext'
     espressoPackage = 'androidx.test.espresso'
@@ -25,6 +26,7 @@ ext {
     rxjavaPackage = 'io.reactivex.rxjava2'
     retrofitPackage = 'com.squareup.retrofit2'
     jakeWhartonPackage = 'com.jakewharton'
+    glidePackage = 'com.github.bumptech.glide'
 
     androidxDependencies = [
             appCompat: buildDependency('androidx.appcompat', 'appcompat', androidXVersion)
@@ -43,7 +45,9 @@ ext {
             rxjava                   : buildDependency(rxjavaPackage, 'rxjava', '2.2.10'),
             rxjavaAndroid            : buildDependency(rxjavaPackage, 'rxandroid', '2.1.1'),
             butterKnife              : buildDependency(jakeWhartonPackage, 'butterknife', butterKnifeVersion),
-            butterKnifeAnnotation    : buildDependency(jakeWhartonPackage, 'butterknife-compiler', butterKnifeVersion)
+            butterKnifeAnnotation    : buildDependency(jakeWhartonPackage, 'butterknife-compiler', butterKnifeVersion),
+            glide                    : buildDependency(glidePackage, 'glide', glideVersion),
+            glideAnnotation          : buildDependency(glidePackage, 'compiler', glideVersion)
     ]
 
     testingDependencies = [
