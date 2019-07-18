@@ -1,7 +1,7 @@
 package com.rsa.cleannewsapp.core.di;
 
 import com.rsa.cleannewsapp.CleanNewsApplication;
-import com.rsa.cleannewsapp.core.remote.RemoteServiceFactory;
+import com.rsa.cleannewsapp.core.data.remote.RemoteServiceFactory;
 
 import android.content.Context;
 

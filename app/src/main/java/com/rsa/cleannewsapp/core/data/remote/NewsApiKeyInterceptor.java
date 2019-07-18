@@ -1,4 +1,4 @@
-package com.rsa.cleannewsapp.core.remote;
+package com.rsa.cleannewsapp.core.data.remote;
 
 import com.rsa.cleannewsapp.BuildConfig;
 
