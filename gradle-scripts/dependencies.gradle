@@ -15,7 +15,7 @@ ext {
     appcompatVersion = '1.0.2'
     materialVersion = '1.0.0'
     daggerVersion = '2.23.2'
-    butterKnifeVersion = '10.0.1'
+    butterKnifeVersion = '10.1.0'
 
     testExtPackage = 'androidx.test.ext'
     espressoPackage = 'androidx.test.espresso'
