@@ -25,6 +25,10 @@ ext {
             appCompat: buildDependency('androidx.appcompat', 'appcompat', androidXVersion)
     ]
 
+    mainApplication = [
+            retrofit    :   buildDependency('com.squareup.retrofit2','retrofit','2.6.0')
+    ]
+
     testingDependencies = [
             junitExt                : buildDependency(testExtPackage, 'junit', '1.0.0'),
             testRunner              : buildDependency(androidxTestPackage, 'runner', '1.1.0'),
