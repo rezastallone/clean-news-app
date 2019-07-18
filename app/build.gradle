@@ -55,6 +55,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':domain')
+
     implementation androidxDependencies.appCompat
     implementation testingDependencies.espressoIdlingResource
     implementation mainApplication.retrofit
