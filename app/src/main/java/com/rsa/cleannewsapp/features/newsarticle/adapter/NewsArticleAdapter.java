@@ -14,14 +14,14 @@ import static androidx.recyclerview.widget.RecyclerView.NO_POSITION;
 
 public class NewsArticleAdapter extends RecyclerView.Adapter<NewsArticleViewHolder> {
 
-    private ArrayList<Article> articles;
+    private ArrayList<Article> articles = new ArrayList<>();
 
-    public static NewsArticleAdapter fromArticles(ArrayList<Article> articles) {
-        return new NewsArticleAdapter(articles);
+    private NewsArticleAdapter() {
+
     }
 
-    private NewsArticleAdapter(ArrayList<Article> articles) {
-        this.articles = articles;
+    public static NewsArticleAdapter newInstance() {
+        return new NewsArticleAdapter();
     }
 
     @NonNull
@@ -36,6 +36,11 @@ public class NewsArticleAdapter extends RecyclerView.Adapter<NewsArticleViewHold
         if (article != null) {
             holder.bind(article);
         }
+    }
+
+    public void setArticles(ArrayList<Article> articles) {
+        this.articles.addAll(articles);
+        notifyDataSetChanged();
     }
 
     @Override

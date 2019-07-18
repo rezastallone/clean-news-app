@@ -4,6 +4,7 @@ import com.rsa.cleannewsapp.CleanNewsApplication;
 import com.rsa.cleannewsapp.R;
 import com.rsa.cleannewsapp.core.BaseFragment;
 import com.rsa.cleannewsapp.core.data.entity.NewsArticles;
+import com.rsa.cleannewsapp.features.newsarticle.adapter.NewsArticleAdapter;
 import com.rsa.cleannewsapp.features.newsarticle.presenter.HeadlinePresenter;
 
 import android.os.Bundle;
@@ -16,11 +17,20 @@ import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class HeadlineFragment extends BaseFragment implements HeadlineView {
 
+    @BindView(R.id.rv_headline)
+    RecyclerView RvHeadline;
+
     @Inject
     HeadlinePresenter headlinePresenter;
+
+    private NewsArticleAdapter newsArticleAdapter;
 
     @Nullable
     @Override
@@ -38,8 +48,14 @@ public class HeadlineFragment extends BaseFragment implements HeadlineView {
     @Override
     public void initView() {
         super.initView();
+        initializeButterKnife();
         initializeDagger();
         initializePresenter();
+        initializeHeadlineList();
+    }
+
+    private void initializeButterKnife() {
+        ButterKnife.bind(this, getView());
     }
 
     private void initializeDagger() {
@@ -53,9 +69,19 @@ public class HeadlineFragment extends BaseFragment implements HeadlineView {
         headlinePresenter.initialize();
     }
 
+    private void initializeHeadlineList() {
+        newsArticleAdapter = NewsArticleAdapter.newInstance();
+        RvHeadline.setAdapter(newsArticleAdapter);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),
+            LinearLayoutManager.HORIZONTAL, false);
+
+        RvHeadline.setLayoutManager(linearLayoutManager);
+    }
+
     @Override
     public void showHeadlines(NewsArticles newsArticles) {
-
+        newsArticleAdapter.setArticles(newsArticles.articles);
     }
 
     @Override
