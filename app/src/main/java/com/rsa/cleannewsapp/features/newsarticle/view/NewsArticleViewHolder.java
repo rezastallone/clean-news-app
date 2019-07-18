@@ -3,6 +3,7 @@ package com.rsa.cleannewsapp.features.newsarticle.view;
 import com.rsa.cleannewsapp.R;
 import com.rsa.cleannewsapp.core.data.entity.Article;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -29,12 +30,13 @@ public class NewsArticleViewHolder extends RecyclerView.ViewHolder {
 
     private NewsArticleViewHolder(@NonNull View itemView) {
         super(itemView);
-        ButterKnife.bind(itemView);
+        ButterKnife.bind(this, itemView);
     }
 
     public static NewsArticleViewHolder fromViewGroup(ViewGroup parent) {
         return new NewsArticleViewHolder(
-            parent.inflate(parent.getContext(), R.layout.item_news_article, parent));
+            LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_news_article, parent, false));
     }
 
     public void bind(Article article) {

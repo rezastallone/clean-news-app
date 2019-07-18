@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class NewsArticles {
 
-    final ArrayList<Article> articles;
+    public final ArrayList<Article> articles;
 
-    final String status;
+    public final String status;
 
-    final int totalResults;
+    public final int totalResults;
 
     public NewsArticles(String status, int totalResults,
         ArrayList<Article> articles) {

@@ -1,13 +1,9 @@
 package com.rsa.cleannewsapp.features.newsarticle.presenter;
 
-import com.google.gson.Gson;
-
 import com.rsa.cleannewsapp.core.data.entity.NewsArticles;
 import com.rsa.cleannewsapp.core.presenter.Presenter;
 import com.rsa.cleannewsapp.features.newsarticle.usecase.GetHeadline;
 import com.rsa.cleannewsapp.features.newsarticle.view.HeadlineView;
-
-import android.util.Log;
 
 import javax.inject.Inject;
 
@@ -31,7 +27,7 @@ public class HeadlinePresenter extends Presenter<HeadlineView> {
         getHeadline.execute(new DisposableObserver<NewsArticles>() {
             @Override
             public void onNext(NewsArticles newsArticles) {
-                Log.d("Articles", new Gson().toJson(newsArticles));
+                getView().showHeadlines(newsArticles);
             }
 
             @Override
