@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RemoteServiceFactory {
 
     private final static String BASE_URL =
-        BuildConfig.NEWS_API_DOMAIN + "/" + BuildConfig.NEWS_API_VERSION;
+        BuildConfig.NEWS_API_DOMAIN + "/" + BuildConfig.NEWS_API_VERSION + "/";
 
     private RemoteServiceFactory() {
 
