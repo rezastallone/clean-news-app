@@ -1,5 +1,6 @@
 package com.rsa.cleannewsapp.features.newsarticle.view;
 
+import com.bumptech.glide.Glide;
 import com.rsa.cleannewsapp.R;
 import com.rsa.cleannewsapp.core.data.entity.Article;
 
@@ -40,8 +41,21 @@ public class NewsArticleViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(Article article) {
+        bindArticleInformation(article);
+        bindArticleImage(article);
+    }
+
+    private void bindArticleInformation(Article article) {
         TvNewsAuthor.setText(article.author);
         TvNewsTitle.setText(article.title);
         TvNewsDescription.setText(article.description);
+    }
+
+    private void bindArticleImage(Article article) {
+        Glide
+            .with(itemView.getContext())
+            .load(article.urlToImage)
+            .centerCrop()
+            .into(IvNewsImage);
     }
 }
