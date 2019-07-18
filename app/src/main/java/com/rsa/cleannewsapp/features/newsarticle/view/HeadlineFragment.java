@@ -30,15 +30,27 @@ public class HeadlineFragment extends BaseFragment implements HeadlineView {
     }
 
     @Override
+    public void onDestroy() {
+        super.onDestroy();
+        headlinePresenter.destroy();
+    }
+
+    @Override
     public void initView() {
         super.initView();
         initializeDagger();
+        initializePresenter();
     }
 
     private void initializeDagger() {
         CleanNewsApplication cleanNewsApplication = (CleanNewsApplication) getActivity()
             .getApplication();
         cleanNewsApplication.getApplicationComponent().inject(this);
+    }
+
+    private void initializePresenter() {
+        headlinePresenter.setView(this);
+        headlinePresenter.initialize();
     }
 
     @Override

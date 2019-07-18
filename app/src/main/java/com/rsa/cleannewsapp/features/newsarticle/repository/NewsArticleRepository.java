@@ -6,6 +6,6 @@ import io.reactivex.Observable;
 
 public interface NewsArticleRepository {
 
-    Observable<NewsArticles> headlines();
+    Observable<NewsArticles> headlines(String country);
 
 }
