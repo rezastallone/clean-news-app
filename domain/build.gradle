@@ -5,6 +5,15 @@ dependencies {
 
     implementation mainApplication.rxjavaAndroid
     implementation mainApplication.rxjava
+
+    implementation mainApplication.dagger
+    annotationProcessor mainApplication.daggerCompiler
+
+    testImplementation testingDependencies.junitExt
+    testImplementation testingDependencies.mockito
+    testImplementation testingDependencies.truth
+
+
 }
 
 sourceCompatibility = "8"

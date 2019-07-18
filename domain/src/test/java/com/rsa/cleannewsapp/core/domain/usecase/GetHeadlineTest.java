@@ -1,12 +1,12 @@
-package com.rsa.cleannewsapp.features.newsarticle.usecase;
+package com.rsa.cleannewsapp.core.domain.usecase;
 
-import com.rsa.cleannewsapp.features.newsarticle.repository.NewsArticleRepository;
+import com.rsa.cleannewsapp.core.domain.repository.NewsArticleRepository;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import io.reactivex.schedulers.Schedulers;
 

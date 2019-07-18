@@ -1,7 +1,8 @@
 package com.rsa.cleannewsapp.features.newsarticle.adapter;
 
 import com.rsa.cleannewsapp.core.common.Action;
-import com.rsa.cleannewsapp.core.data.entity.Article;
+
+import com.rsa.cleannewsapp.core.domain.entity.Article;
 import com.rsa.cleannewsapp.features.newsarticle.view.NewsArticleViewHolder;
 
 import android.view.ViewGroup;

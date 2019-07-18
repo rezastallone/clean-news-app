@@ -1,4 +1,4 @@
-package com.rsa.cleannewsapp.core.domain;
+package com.rsa.cleannewsapp.core.domain.usecase;
 
 import io.reactivex.Observable;
 import io.reactivex.Scheduler;
