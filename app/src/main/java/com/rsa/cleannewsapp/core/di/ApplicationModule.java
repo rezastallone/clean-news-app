@@ -1,5 +1,8 @@
 package com.rsa.cleannewsapp.core.di;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import com.rsa.cleannewsapp.CleanNewsApplication;
 import com.rsa.cleannewsapp.core.data.remote.RemoteServiceFactory;
 
@@ -28,7 +31,15 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    Retrofit provideRetrofit() {
-        return RemoteServiceFactory.getRemoteService();
+    Retrofit provideRetrofit(Gson gson) {
+        return RemoteServiceFactory.getRemoteService(gson);
+    }
+
+    @Provides
+    @Singleton
+    Gson provideGson() {
+        return new GsonBuilder()
+            .setDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+            .create();
     }
 }
