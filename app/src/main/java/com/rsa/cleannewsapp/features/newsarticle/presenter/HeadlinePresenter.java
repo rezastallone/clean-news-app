@@ -5,13 +5,18 @@ import com.rsa.cleannewsapp.core.presenter.Presenter;
 import com.rsa.cleannewsapp.features.newsarticle.usecase.GetHeadline;
 import com.rsa.cleannewsapp.features.newsarticle.view.HeadlineView;
 
+import javax.inject.Inject;
+
+import androidx.annotation.NonNull;
 import io.reactivex.observers.DisposableObserver;
 
 public class HeadlinePresenter extends Presenter<HeadlineView> {
 
     private GetHeadline getHeadline;
 
-    public HeadlinePresenter(GetHeadline getHeadline) {
+    @Inject
+    public HeadlinePresenter(
+        @NonNull GetHeadline getHeadline) {
         this.getHeadline = getHeadline;
     }
 

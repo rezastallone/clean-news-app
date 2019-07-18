@@ -15,7 +15,7 @@ public class BaseFragment extends Fragment {
         initView();
     }
 
-    private void initView() {
+    public void initView() {
 
     }
 
