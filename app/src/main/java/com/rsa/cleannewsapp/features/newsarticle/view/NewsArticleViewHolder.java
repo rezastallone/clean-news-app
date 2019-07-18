@@ -4,6 +4,7 @@ import com.rsa.cleannewsapp.R;
 import com.rsa.cleannewsapp.core.data.entity.Article;
 
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,12 +27,17 @@ public class NewsArticleViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.tv_news_title)
     TextView TvNewsTitle;
 
-    public NewsArticleViewHolder(@NonNull View itemView) {
+    private NewsArticleViewHolder(@NonNull View itemView) {
         super(itemView);
         ButterKnife.bind(itemView);
     }
 
-    public void bind(Article article){
+    public static NewsArticleViewHolder fromViewGroup(ViewGroup parent) {
+        return new NewsArticleViewHolder(
+            parent.inflate(parent.getContext(), R.layout.item_news_article, parent));
+    }
+
+    public void bind(Article article) {
         TvNewsAuthor.setText(article.author);
         TvNewsTitle.setText(article.title);
         TvNewsDescription.setText(article.description);
