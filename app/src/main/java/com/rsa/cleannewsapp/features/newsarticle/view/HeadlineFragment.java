@@ -7,6 +7,8 @@ import com.rsa.cleannewsapp.core.data.entity.NewsArticles;
 import com.rsa.cleannewsapp.features.newsarticle.adapter.NewsArticleAdapter;
 import com.rsa.cleannewsapp.features.newsarticle.presenter.HeadlinePresenter;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -70,13 +72,18 @@ public class HeadlineFragment extends BaseFragment implements HeadlineView {
     }
 
     private void initializeHeadlineList() {
-        newsArticleAdapter = NewsArticleAdapter.newInstance();
+        initializeAdapter();
         RvHeadline.setAdapter(newsArticleAdapter);
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),
             LinearLayoutManager.HORIZONTAL, false);
-
         RvHeadline.setLayoutManager(linearLayoutManager);
+    }
+
+    private void initializeAdapter() {
+        newsArticleAdapter = NewsArticleAdapter.newInstance(article -> {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(article.url));
+            startActivity(browserIntent);
+        });
     }
 
     @Override

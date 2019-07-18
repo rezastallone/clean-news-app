@@ -1,5 +1,6 @@
 package com.rsa.cleannewsapp.features.newsarticle.adapter;
 
+import com.rsa.cleannewsapp.core.common.Action;
 import com.rsa.cleannewsapp.core.data.entity.Article;
 import com.rsa.cleannewsapp.features.newsarticle.view.NewsArticleViewHolder;
 
@@ -14,20 +15,23 @@ import static androidx.recyclerview.widget.RecyclerView.NO_POSITION;
 
 public class NewsArticleAdapter extends RecyclerView.Adapter<NewsArticleViewHolder> {
 
+    private final Action<Article> onClick;
+
     private ArrayList<Article> articles = new ArrayList<>();
 
-    private NewsArticleAdapter() {
-
+    private NewsArticleAdapter(
+        Action<Article> onClick) {
+        this.onClick = onClick;
     }
 
-    public static NewsArticleAdapter newInstance() {
-        return new NewsArticleAdapter();
+    public static NewsArticleAdapter newInstance(Action<Article> onClick) {
+        return new NewsArticleAdapter(onClick);
     }
 
     @NonNull
     @Override
     public NewsArticleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return NewsArticleViewHolder.fromViewGroup(parent);
+        return NewsArticleViewHolder.newInstance(parent, this.onClick);
     }
 
     @Override
@@ -36,11 +40,6 @@ public class NewsArticleAdapter extends RecyclerView.Adapter<NewsArticleViewHold
         if (article != null) {
             holder.bind(article);
         }
-    }
-
-    public void setArticles(ArrayList<Article> articles) {
-        this.articles.addAll(articles);
-        notifyDataSetChanged();
     }
 
     @Override
@@ -54,5 +53,10 @@ public class NewsArticleAdapter extends RecyclerView.Adapter<NewsArticleViewHold
         } else {
             return null;
         }
+    }
+
+    public void setArticles(ArrayList<Article> articles) {
+        this.articles.addAll(articles);
+        notifyDataSetChanged();
     }
 }
