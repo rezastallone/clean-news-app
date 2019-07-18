@@ -5,7 +5,7 @@ import io.reactivex.Scheduler;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableObserver;
 
-abstract class UseCase<T> {
+public abstract class UseCase<T> {
 
     private final CompositeDisposable compositeDisposable;
 
@@ -13,7 +13,7 @@ abstract class UseCase<T> {
 
     private final Scheduler uiThread;
 
-    UseCase(Scheduler executorThread, Scheduler uiThread) {
+    public UseCase(Scheduler executorThread, Scheduler uiThread) {
         this.executorThread = executorThread;
         this.uiThread = uiThread;
         compositeDisposable = new CompositeDisposable();
