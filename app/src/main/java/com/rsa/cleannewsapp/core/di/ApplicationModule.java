@@ -1,6 +1,7 @@
 package com.rsa.cleannewsapp.core.di;
 
 import com.rsa.cleannewsapp.CleanNewsApplication;
+import com.rsa.cleannewsapp.core.remote.RemoteServiceFactory;
 
 import android.content.Context;
 
@@ -8,6 +9,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import retrofit2.Retrofit;
 
 @Module
 public class ApplicationModule {
@@ -24,4 +26,9 @@ public class ApplicationModule {
         return cleanNewsApplication;
     }
 
+    @Provides
+    @Singleton
+    Retrofit provideRetrofit() {
+        return RemoteServiceFactory.getRemoteService();
+    }
 }
