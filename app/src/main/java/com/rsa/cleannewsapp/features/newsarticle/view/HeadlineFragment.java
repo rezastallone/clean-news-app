@@ -94,6 +94,11 @@ public class HeadlineFragment extends BaseFragment implements HeadlineView {
     }
 
     @Override
+    public void showBookmarkedNews(ArrayList<ArticleModel> bookmarkedNews) {
+
+    }
+
+    @Override
     public void showLoading() {
         Toast.makeText(getContext(), "loading", Toast.LENGTH_SHORT).show();
     }
