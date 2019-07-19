@@ -43,6 +43,25 @@ public class HeadlinePresenter extends Presenter<HeadlineView> {
         executeGetHeadlines();
     }
 
+    private void executeGetBookmarkedNews() {
+        getBookmarkedNews.execute(new DisposableObserver<ArrayList<Article>>() {
+            @Override
+            public void onNext(ArrayList<Article> articles) {
+                showBookmarkedNews(articles);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+    }
+
     private void executeGetHeadlines() {
         getHeadline.execute(new DisposableObserver<NewsArticles>() {
             @Override
@@ -59,25 +78,6 @@ public class HeadlinePresenter extends Presenter<HeadlineView> {
             @Override
             public void onComplete() {
                 getView().hideLoading();
-            }
-        });
-    }
-
-    private void executeGetBookmarkedNews() {
-        getBookmarkedNews.execute(new DisposableObserver<ArrayList<Article>>() {
-            @Override
-            public void onNext(ArrayList<Article> articles) {
-                showBookmarkedNews(articles);
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onComplete() {
-
             }
         });
     }
