@@ -17,21 +17,26 @@ public class NewsArticleAdapter extends RecyclerView.Adapter<NewsArticleViewHold
 
     private final Action<ArticleModel> onClick;
 
+    private final Action<ArticleModel> onLongClick;
+
     private ArrayList<ArticleModel> articles = new ArrayList<>();
 
     private NewsArticleAdapter(
-        Action<ArticleModel> onClick) {
+        Action<ArticleModel> onClick,
+        Action<ArticleModel> onLongClick) {
         this.onClick = onClick;
+        this.onLongClick = onLongClick;
     }
 
-    public static NewsArticleAdapter newInstance(Action<ArticleModel> onClick) {
-        return new NewsArticleAdapter(onClick);
+    public static NewsArticleAdapter newInstance(Action<ArticleModel> onClick,
+        Action<ArticleModel> onLongClick) {
+        return new NewsArticleAdapter(onClick, onLongClick);
     }
 
     @NonNull
     @Override
     public NewsArticleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return NewsArticleViewHolder.newInstance(parent, this.onClick);
+        return NewsArticleViewHolder.newInstance(parent, this.onClick, this.onLongClick);
     }
 
     @Override
@@ -53,6 +58,10 @@ public class NewsArticleAdapter extends RecyclerView.Adapter<NewsArticleViewHold
         } else {
             return null;
         }
+    }
+
+    public ArrayList<ArticleModel> getDataSet() {
+        return this.articles;
     }
 
     public void setArticles(ArrayList<ArticleModel> articles) {

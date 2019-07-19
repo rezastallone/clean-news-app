@@ -18,6 +18,8 @@ import butterknife.ButterKnife;
 
 public class NewsArticleViewHolder extends RecyclerView.ViewHolder {
 
+    private final Action<ArticleModel> onLongClick;
+
     @BindView(R.id.iv_news_image)
     ImageView IvNewsImage;
 
@@ -32,23 +34,28 @@ public class NewsArticleViewHolder extends RecyclerView.ViewHolder {
 
     private Action onClick;
 
-    private NewsArticleViewHolder(@NonNull View itemView, @NonNull Action<ArticleModel> onClick) {
+    private NewsArticleViewHolder(@NonNull View itemView,
+        @NonNull Action<ArticleModel> onClick,
+        Action<ArticleModel> onLongClick) {
         super(itemView);
         ButterKnife.bind(this, itemView);
         this.onClick = onClick;
+        this.onLongClick = onLongClick;
     }
 
     public static NewsArticleViewHolder newInstance(ViewGroup parent,
-        Action<ArticleModel> onClick) {
+        Action<ArticleModel> onClick,
+        Action<ArticleModel> onLongClick) {
         return new NewsArticleViewHolder(
             LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_news_article, parent, false), onClick);
+                .inflate(R.layout.item_news_article, parent, false), onClick, onLongClick);
     }
 
     public void bind(ArticleModel article) {
         bindArticleInformation(article);
         bindArticleImage(article);
         bindClick(article);
+        bindLongClick(article);
     }
 
     private void bindArticleInformation(ArticleModel article) {
@@ -68,6 +75,13 @@ public class NewsArticleViewHolder extends RecyclerView.ViewHolder {
     private void bindClick(ArticleModel article) {
         itemView.setOnClickListener(view -> {
             onClick.call(article);
+        });
+    }
+
+    private void bindLongClick(ArticleModel article) {
+        itemView.setOnLongClickListener(view -> {
+            onLongClick.call(article);
+            return true;
         });
     }
 }
