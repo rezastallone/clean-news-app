@@ -1,9 +1,13 @@
 package com.rsa.cleannewsapp.features.newsarticle.presenter;
 
 import com.rsa.cleannewsapp.core.domain.entity.NewsArticles;
-import com.rsa.cleannewsapp.core.presenter.Presenter;
 import com.rsa.cleannewsapp.core.domain.usecase.GetHeadline;
+import com.rsa.cleannewsapp.core.presenter.Presenter;
+import com.rsa.cleannewsapp.features.newsarticle.mapper.ArticleModelDataMapper;
+import com.rsa.cleannewsapp.features.newsarticle.model.ArticleModel;
 import com.rsa.cleannewsapp.features.newsarticle.view.HeadlineView;
+
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 
@@ -12,12 +16,17 @@ import io.reactivex.observers.DisposableObserver;
 
 public class HeadlinePresenter extends Presenter<HeadlineView> {
 
+    private ArticleModelDataMapper articleModelDataMapper;
+
     private GetHeadline getHeadline;
 
     @Inject
     public HeadlinePresenter(
-        @NonNull GetHeadline getHeadline) {
+        @NonNull GetHeadline getHeadline,
+        ArticleModelDataMapper articleModelDataMapper
+    ) {
         this.getHeadline = getHeadline;
+        this.articleModelDataMapper = articleModelDataMapper;
     }
 
     @Override
@@ -27,7 +36,7 @@ public class HeadlinePresenter extends Presenter<HeadlineView> {
         getHeadline.execute(new DisposableObserver<NewsArticles>() {
             @Override
             public void onNext(NewsArticles newsArticles) {
-                getView().showHeadlines(newsArticles);
+                showHeadlines(newsArticles);
             }
 
             @Override
@@ -41,6 +50,12 @@ public class HeadlinePresenter extends Presenter<HeadlineView> {
                 getView().hideLoading();
             }
         });
+    }
+
+    private void showHeadlines(NewsArticles newsArticles) {
+        getView().showHeadlines(
+            (ArrayList<ArticleModel>) articleModelDataMapper
+                .transform(newsArticles.articles));
     }
 
     public void destroy() {

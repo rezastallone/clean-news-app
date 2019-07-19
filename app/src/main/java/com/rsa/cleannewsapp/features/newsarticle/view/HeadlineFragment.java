@@ -3,8 +3,8 @@ package com.rsa.cleannewsapp.features.newsarticle.view;
 import com.rsa.cleannewsapp.CleanNewsApplication;
 import com.rsa.cleannewsapp.R;
 import com.rsa.cleannewsapp.core.BaseFragment;
-import com.rsa.cleannewsapp.core.domain.entity.NewsArticles;
 import com.rsa.cleannewsapp.features.newsarticle.adapter.NewsArticleAdapter;
+import com.rsa.cleannewsapp.features.newsarticle.model.ArticleModel;
 import com.rsa.cleannewsapp.features.newsarticle.presenter.HeadlinePresenter;
 
 import android.content.Intent;
@@ -14,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 
@@ -87,8 +89,8 @@ public class HeadlineFragment extends BaseFragment implements HeadlineView {
     }
 
     @Override
-    public void showHeadlines(NewsArticles newsArticles) {
-        newsArticleAdapter.setArticles(newsArticles.articles);
+    public void showHeadlines(ArrayList<ArticleModel> headlines) {
+        newsArticleAdapter.setArticles(headlines);
     }
 
     @Override

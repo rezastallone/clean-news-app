@@ -1,8 +1,7 @@
 package com.rsa.cleannewsapp.features.newsarticle.adapter;
 
 import com.rsa.cleannewsapp.core.common.Action;
-
-import com.rsa.cleannewsapp.core.domain.entity.Article;
+import com.rsa.cleannewsapp.features.newsarticle.model.ArticleModel;
 import com.rsa.cleannewsapp.features.newsarticle.view.NewsArticleViewHolder;
 
 import android.view.ViewGroup;
@@ -16,16 +15,16 @@ import static androidx.recyclerview.widget.RecyclerView.NO_POSITION;
 
 public class NewsArticleAdapter extends RecyclerView.Adapter<NewsArticleViewHolder> {
 
-    private final Action<Article> onClick;
+    private final Action<ArticleModel> onClick;
 
-    private ArrayList<Article> articles = new ArrayList<>();
+    private ArrayList<ArticleModel> articles = new ArrayList<>();
 
     private NewsArticleAdapter(
-        Action<Article> onClick) {
+        Action<ArticleModel> onClick) {
         this.onClick = onClick;
     }
 
-    public static NewsArticleAdapter newInstance(Action<Article> onClick) {
+    public static NewsArticleAdapter newInstance(Action<ArticleModel> onClick) {
         return new NewsArticleAdapter(onClick);
     }
 
@@ -37,7 +36,7 @@ public class NewsArticleAdapter extends RecyclerView.Adapter<NewsArticleViewHold
 
     @Override
     public void onBindViewHolder(@NonNull NewsArticleViewHolder holder, int position) {
-        Article article = getItem(position);
+        ArticleModel article = getItem(position);
         if (article != null) {
             holder.bind(article);
         }
@@ -48,7 +47,7 @@ public class NewsArticleAdapter extends RecyclerView.Adapter<NewsArticleViewHold
         return articles.size();
     }
 
-    private Article getItem(int position) {
+    private ArticleModel getItem(int position) {
         if (position != NO_POSITION) {
             return articles.get(position);
         } else {
@@ -56,7 +55,7 @@ public class NewsArticleAdapter extends RecyclerView.Adapter<NewsArticleViewHold
         }
     }
 
-    public void setArticles(ArrayList<Article> articles) {
+    public void setArticles(ArrayList<ArticleModel> articles) {
         this.articles.addAll(articles);
         notifyDataSetChanged();
     }
