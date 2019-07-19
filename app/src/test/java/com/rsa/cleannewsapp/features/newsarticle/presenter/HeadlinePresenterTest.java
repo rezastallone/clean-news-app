@@ -1,6 +1,7 @@
 package com.rsa.cleannewsapp.features.newsarticle.presenter;
 
 import com.rsa.cleannewsapp.core.domain.usecase.GetHeadline;
+import com.rsa.cleannewsapp.features.newsarticle.mapper.ArticleModelDataMapper;
 import com.rsa.cleannewsapp.features.newsarticle.view.HeadlineView;
 
 import org.junit.Before;
@@ -18,6 +19,9 @@ import static org.mockito.Mockito.verify;
 public class HeadlinePresenterTest {
 
     @Mock
+    private ArticleModelDataMapper articleModelDataMapper;
+
+    @Mock
     private GetHeadline getHeadline;
 
     private HeadlinePresenter headlinePresenter;
@@ -27,7 +31,7 @@ public class HeadlinePresenterTest {
 
     @Before
     public void setUp() throws Exception {
-        headlinePresenter = new HeadlinePresenter(getHeadline);
+        headlinePresenter = new HeadlinePresenter(getHeadline, articleModelDataMapper);
         headlinePresenter.setView(headlineView);
     }
 
