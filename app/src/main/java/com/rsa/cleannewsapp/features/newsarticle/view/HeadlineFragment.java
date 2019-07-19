@@ -31,8 +31,13 @@ public class HeadlineFragment extends BaseFragment implements HeadlineView {
     @BindView(R.id.rv_headline)
     RecyclerView RvHeadline;
 
+    @BindView(R.id.rv_bookmarked)
+    RecyclerView RvBookmarked;
+
     @Inject
     HeadlinePresenter headlinePresenter;
+
+    private NewsArticleAdapter bookmarkedNewsArticleAdapter;
 
     private NewsArticleAdapter newsArticleAdapter;
 
@@ -56,6 +61,7 @@ public class HeadlineFragment extends BaseFragment implements HeadlineView {
         initializeDagger();
         initializePresenter();
         initializeHeadlineList();
+        initializeBookmarkedNewsList();
     }
 
     private void initializeButterKnife() {
@@ -74,15 +80,30 @@ public class HeadlineFragment extends BaseFragment implements HeadlineView {
     }
 
     private void initializeHeadlineList() {
-        initializeAdapter();
+        initializeHeadlineAdapter();
         RvHeadline.setAdapter(newsArticleAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),
             LinearLayoutManager.HORIZONTAL, false);
         RvHeadline.setLayoutManager(linearLayoutManager);
     }
 
-    private void initializeAdapter() {
+    private void initializeHeadlineAdapter() {
         newsArticleAdapter = NewsArticleAdapter.newInstance(article -> {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(article.url));
+            startActivity(browserIntent);
+        });
+    }
+
+    private void initializeBookmarkedNewsList() {
+        initializeBookmarkedAdapter();
+        RvBookmarked.setAdapter(bookmarkedNewsArticleAdapter);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),
+            LinearLayoutManager.HORIZONTAL, false);
+        RvBookmarked.setLayoutManager(linearLayoutManager);
+    }
+
+    private void initializeBookmarkedAdapter() {
+        bookmarkedNewsArticleAdapter = NewsArticleAdapter.newInstance(article -> {
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(article.url));
             startActivity(browserIntent);
         });
@@ -95,7 +116,7 @@ public class HeadlineFragment extends BaseFragment implements HeadlineView {
 
     @Override
     public void showBookmarkedNews(ArrayList<ArticleModel> bookmarkedNews) {
-
+        bookmarkedNewsArticleAdapter.setArticles(bookmarkedNews);
     }
 
     @Override
