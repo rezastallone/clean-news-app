@@ -101,7 +101,22 @@ public class HeadlinePresenter extends Presenter<HeadlineView> {
     public void setBookmarkedNews(ArrayList<ArticleModel> articleModels) {
         ArrayList<Article> articles = (ArrayList<Article>) articleModelDataMapper
             .transformBack(articleModels);
-        setBookmarkedNews.execute(articles);
+        setBookmarkedNews.execute(articles, new DisposableObserver() {
+            @Override
+            public void onNext(Object o) {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
     }
 
     public void destroy() {

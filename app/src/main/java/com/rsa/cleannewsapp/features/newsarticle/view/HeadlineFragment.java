@@ -3,6 +3,7 @@ package com.rsa.cleannewsapp.features.newsarticle.view;
 import com.rsa.cleannewsapp.CleanNewsApplication;
 import com.rsa.cleannewsapp.R;
 import com.rsa.cleannewsapp.core.BaseFragment;
+import com.rsa.cleannewsapp.core.common.Action;
 import com.rsa.cleannewsapp.features.newsarticle.adapter.NewsArticleAdapter;
 import com.rsa.cleannewsapp.features.newsarticle.model.ArticleModel;
 import com.rsa.cleannewsapp.features.newsarticle.presenter.HeadlinePresenter;
@@ -28,16 +29,27 @@ import butterknife.ButterKnife;
 
 public class HeadlineFragment extends BaseFragment implements HeadlineView {
 
-    @BindView(R.id.rv_headline)
-    RecyclerView RvHeadline;
+    private final Action<ArticleModel> onClick = article -> {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(article.url));
+        startActivity(browserIntent);
+    };
 
     @BindView(R.id.rv_bookmarked)
     RecyclerView RvBookmarked;
+
+    @BindView(R.id.rv_headline)
+    RecyclerView RvHeadline;
 
     @Inject
     HeadlinePresenter headlinePresenter;
 
     private NewsArticleAdapter bookmarkedNewsArticleAdapter;
+
+    private final Action<ArticleModel> onLongClick = articleToBookmark -> {
+        ArrayList<ArticleModel> existingBookmarked = bookmarkedNewsArticleAdapter.getDataSet();
+        existingBookmarked.add(articleToBookmark);
+        headlinePresenter.setBookmarkedNews(existingBookmarked);
+    };
 
     private NewsArticleAdapter newsArticleAdapter;
 
@@ -87,13 +99,6 @@ public class HeadlineFragment extends BaseFragment implements HeadlineView {
         RvHeadline.setLayoutManager(linearLayoutManager);
     }
 
-    private void initializeHeadlineAdapter() {
-        newsArticleAdapter = NewsArticleAdapter.newInstance(article -> {
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(article.url));
-            startActivity(browserIntent);
-        });
-    }
-
     private void initializeBookmarkedNewsList() {
         initializeBookmarkedAdapter();
         RvBookmarked.setAdapter(bookmarkedNewsArticleAdapter);
@@ -102,11 +107,12 @@ public class HeadlineFragment extends BaseFragment implements HeadlineView {
         RvBookmarked.setLayoutManager(linearLayoutManager);
     }
 
+    private void initializeHeadlineAdapter() {
+        newsArticleAdapter = NewsArticleAdapter.newInstance(onClick, onLongClick);
+    }
+
     private void initializeBookmarkedAdapter() {
-        bookmarkedNewsArticleAdapter = NewsArticleAdapter.newInstance(article -> {
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(article.url));
-            startActivity(browserIntent);
-        });
+        bookmarkedNewsArticleAdapter = NewsArticleAdapter.newInstance(onClick, onLongClick);
     }
 
     @Override
