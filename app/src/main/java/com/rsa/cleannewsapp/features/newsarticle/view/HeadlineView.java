@@ -9,4 +9,6 @@ public interface HeadlineView extends Presenter.View {
 
     void showHeadlines(ArrayList<ArticleModel> headlines);
 
+    void showBookmarkedNews(ArrayList<ArticleModel> bookmarkedNews);
+
 }

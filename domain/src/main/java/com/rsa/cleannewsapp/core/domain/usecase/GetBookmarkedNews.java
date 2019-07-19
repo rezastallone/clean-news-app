@@ -5,6 +5,7 @@ import com.rsa.cleannewsapp.core.domain.repository.NewsArticleRepository;
 
 import java.util.ArrayList;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import io.reactivex.Observable;
@@ -14,6 +15,7 @@ public class GetBookmarkedNews extends UseCase<ArrayList<Article>> {
 
     private NewsArticleRepository newsArticleRepository;
 
+    @Inject
     public GetBookmarkedNews(
         @Named("executor_thread") Scheduler executorThread,
         @Named("ui_thread") Scheduler uiThread,
