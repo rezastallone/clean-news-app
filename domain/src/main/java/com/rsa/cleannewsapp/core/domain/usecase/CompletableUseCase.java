@@ -1,9 +1,9 @@
 package com.rsa.cleannewsapp.core.domain.usecase;
 
 import io.reactivex.Observable;
+import io.reactivex.Observer;
 import io.reactivex.Scheduler;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
 
 public abstract class CompletableUseCase<Param> {
 
@@ -16,13 +16,16 @@ public abstract class CompletableUseCase<Param> {
         compositeDisposable = new CompositeDisposable();
     }
 
-    public Disposable execute(Param param) {
-        Disposable disposable = this.createObservableUseCase(param)
+    public void execute(Param param, Observer observer) {
+
+        if (observer == null) {
+            throw new IllegalArgumentException("disposableObserver must not be null");
+        }
+
+        this.createObservableUseCase(param)
             .subscribeOn(executorThread)
             .observeOn(executorThread)
-            .subscribe();
-        compositeDisposable.add(disposable);
-        return disposable;
+            .subscribe(observer);
     }
 
     protected abstract Observable createObservableUseCase(Param param);
