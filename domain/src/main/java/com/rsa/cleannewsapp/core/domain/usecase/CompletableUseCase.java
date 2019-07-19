@@ -5,7 +5,7 @@ import io.reactivex.Scheduler;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
-public abstract class CompletableUseCase {
+public abstract class CompletableUseCase<Param> {
 
     private final CompositeDisposable compositeDisposable;
 
@@ -16,15 +16,16 @@ public abstract class CompletableUseCase {
         compositeDisposable = new CompositeDisposable();
     }
 
-    public void execute() {
-        Disposable disposable = this.createObservableUseCase()
+    public Disposable execute(Param param) {
+        Disposable disposable = this.createObservableUseCase(param)
             .subscribeOn(executorThread)
             .observeOn(executorThread)
             .subscribe();
         compositeDisposable.add(disposable);
+        return disposable;
     }
 
-    protected abstract Observable createObservableUseCase();
+    protected abstract Observable createObservableUseCase(Param param);
 
     public void dispose() {
         if (!compositeDisposable.isDisposed()) {

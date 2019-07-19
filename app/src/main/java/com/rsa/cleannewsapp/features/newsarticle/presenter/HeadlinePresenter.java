@@ -4,6 +4,7 @@ import com.rsa.cleannewsapp.core.domain.entity.Article;
 import com.rsa.cleannewsapp.core.domain.entity.NewsArticles;
 import com.rsa.cleannewsapp.core.domain.usecase.GetBookmarkedNews;
 import com.rsa.cleannewsapp.core.domain.usecase.GetHeadline;
+import com.rsa.cleannewsapp.core.domain.usecase.SetBookmarkedNews;
 import com.rsa.cleannewsapp.core.presenter.Presenter;
 import com.rsa.cleannewsapp.features.newsarticle.mapper.ArticleModelDataMapper;
 import com.rsa.cleannewsapp.features.newsarticle.model.ArticleModel;
@@ -20,6 +21,8 @@ public class HeadlinePresenter extends Presenter<HeadlineView> {
 
     private final GetBookmarkedNews getBookmarkedNews;
 
+    private final SetBookmarkedNews setBookmarkedNews;
+
     private ArticleModelDataMapper articleModelDataMapper;
 
     private GetHeadline getHeadline;
@@ -28,11 +31,13 @@ public class HeadlinePresenter extends Presenter<HeadlineView> {
     public HeadlinePresenter(
         @NonNull GetHeadline getHeadline,
         @NonNull GetBookmarkedNews getBookmarkedNews,
+        @NonNull SetBookmarkedNews setBookmarkedNews,
         ArticleModelDataMapper articleModelDataMapper
     ) {
         this.getHeadline = getHeadline;
         this.articleModelDataMapper = articleModelDataMapper;
         this.getBookmarkedNews = getBookmarkedNews;
+        this.setBookmarkedNews = setBookmarkedNews;
     }
 
     @Override
@@ -93,9 +98,16 @@ public class HeadlinePresenter extends Presenter<HeadlineView> {
                 .transform(newsArticles.articles));
     }
 
+    public void setBookmarkedNews(ArrayList<ArticleModel> articleModels) {
+        ArrayList<Article> articles = (ArrayList<Article>) articleModelDataMapper
+            .transformBack(articleModels);
+        setBookmarkedNews.execute(articles);
+    }
+
     public void destroy() {
         this.getHeadline.dispose();
         this.getBookmarkedNews.dispose();
+        this.setBookmarkedNews.dispose();
         setView(null);
     }
 }
