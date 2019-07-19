@@ -6,6 +6,7 @@ import com.google.gson.GsonBuilder;
 import com.rsa.cleannewsapp.CleanNewsApplication;
 import com.rsa.cleannewsapp.core.data.remote.RemoteServiceFactory;
 import com.rsa.cleannewsapp.core.data.repository.DefaultNewsArticleRepository;
+import com.rsa.cleannewsapp.core.data.repository.datasource.NewsArticleLocalDataStore;
 import com.rsa.cleannewsapp.core.data.repository.datasource.NewsArticleRemoteDataStore;
 import com.rsa.cleannewsapp.core.domain.repository.NewsArticleRepository;
 
@@ -50,8 +51,15 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    NewsArticleRepository provideNewsArticleRepository(NewsArticleRemoteDataStore remoteDataStore) {
-        return new DefaultNewsArticleRepository(remoteDataStore);
+    NewsArticleLocalDataStore provideNewsArticleLocalDataStore() {
+        return new NewsArticleLocalDataStore();
+    }
+
+    @Provides
+    @Singleton
+    NewsArticleRepository provideNewsArticleRepository(NewsArticleRemoteDataStore remoteDataStore,
+        NewsArticleLocalDataStore localDataSource) {
+        return new DefaultNewsArticleRepository(remoteDataStore, localDataSource);
     }
 
     @Provides
