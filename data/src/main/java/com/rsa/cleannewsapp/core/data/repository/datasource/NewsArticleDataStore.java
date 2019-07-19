@@ -4,7 +4,7 @@ import com.rsa.cleannewsapp.core.domain.entity.NewsArticles;
 
 import io.reactivex.Observable;
 
-public interface NewsArticleStore {
+public interface NewsArticleDataStore {
 
     Observable<NewsArticles> headlines(String country);
 

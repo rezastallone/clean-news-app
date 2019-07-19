@@ -1,6 +1,6 @@
 package com.rsa.cleannewsapp.core.data.repository;
 
-import com.rsa.cleannewsapp.core.data.remote.NewsService;
+import com.rsa.cleannewsapp.core.data.repository.datasource.NewsArticleRemoteDataStore;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -19,11 +19,11 @@ public class DefaultNewsArticleRepositoryTest {
     private DefaultNewsArticleRepository defaultNewsArticleRepository;
 
     @Mock
-    private NewsService newsService;
+    private NewsArticleRemoteDataStore newsArticleRemoteDataStore;
 
     @Before
     public void setUp() throws Exception {
-        defaultNewsArticleRepository = new DefaultNewsArticleRepository(newsService);
+        defaultNewsArticleRepository = new DefaultNewsArticleRepository(newsArticleRemoteDataStore);
     }
 
     @Test
@@ -34,7 +34,7 @@ public class DefaultNewsArticleRepositoryTest {
     @Test
     public void getHeadlineObservableFromNewsService() {
         defaultNewsArticleRepository.headlines("id");
-        verify(newsService).headlines("id");
-        verifyNoMoreInteractions(newsService);
+        verify(newsArticleRemoteDataStore).headlines("id");
+        verifyNoMoreInteractions(newsArticleRemoteDataStore);
     }
 }
