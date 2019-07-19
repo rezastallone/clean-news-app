@@ -6,7 +6,7 @@ import com.rsa.cleannewsapp.core.domain.entity.NewsArticles;
 import io.reactivex.Observable;
 import retrofit2.Retrofit;
 
-public class NewsArticleRemoteDataStore implements NewsArticleStore {
+public class NewsArticleRemoteDataStore implements NewsArticleDataStore {
 
     private final NewsApi newsApi;
 
