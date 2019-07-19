@@ -4,10 +4,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import com.rsa.cleannewsapp.CleanNewsApplication;
-import com.rsa.cleannewsapp.core.data.remote.NewsApi;
-import com.rsa.cleannewsapp.core.data.remote.NewsService;
 import com.rsa.cleannewsapp.core.data.remote.RemoteServiceFactory;
 import com.rsa.cleannewsapp.core.data.repository.DefaultNewsArticleRepository;
+import com.rsa.cleannewsapp.core.data.repository.datasource.NewsArticleRemoteDataStore;
 import com.rsa.cleannewsapp.core.domain.repository.NewsArticleRepository;
 
 import android.content.Context;
@@ -45,14 +44,14 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    NewsApi provideNewsApi(Retrofit retrofit) {
-        return new NewsService(retrofit);
+    NewsArticleRemoteDataStore provideNewsArticleRemoteDataStore(Retrofit retrofit) {
+        return new NewsArticleRemoteDataStore(retrofit);
     }
 
     @Provides
     @Singleton
-    NewsArticleRepository provideNewsArticleRepository(NewsApi newsApi) {
-        return new DefaultNewsArticleRepository(newsApi);
+    NewsArticleRepository provideNewsArticleRepository(NewsArticleRemoteDataStore remoteDataStore) {
+        return new DefaultNewsArticleRepository(remoteDataStore);
     }
 
     @Provides
