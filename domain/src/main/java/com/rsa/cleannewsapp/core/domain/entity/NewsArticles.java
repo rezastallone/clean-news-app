@@ -16,4 +16,8 @@ public class NewsArticles {
         this.totalResults = totalResults;
         this.articles = articles;
     }
+
+    public static NewsArticles fromNothing() {
+        return new NewsArticles("", 0, new ArrayList<>());
+    }
 }
