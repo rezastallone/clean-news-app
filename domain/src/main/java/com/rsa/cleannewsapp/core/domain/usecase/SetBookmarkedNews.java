@@ -6,30 +6,29 @@ import com.rsa.cleannewsapp.core.domain.repository.NewsArticleRepository;
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import io.reactivex.Observable;
 import io.reactivex.Scheduler;
 
-public class SetBookmarkedNews extends UseCase {
+public class SetBookmarkedNews extends CompletableUseCase<ArrayList<Article>> {
 
     private final NewsArticleRepository repository;
 
-    public ArrayList<Article> bookmarkedNewsToUpdate = new ArrayList<>();
-
+    @Inject
     public SetBookmarkedNews(
         @Named("executor_thread") Scheduler executorThread,
-        @Named("ui_thread") Scheduler uiThread,
         NewsArticleRepository newsArticleRepository
     ) {
-        super(executorThread, uiThread);
+        super(executorThread);
         this.repository = newsArticleRepository;
     }
 
     @Override
-    protected Observable<Void> createObservableUseCase() {
-        return Observable.fromCallable(() -> {
-            repository.setBookmarkedNews(bookmarkedNewsToUpdate);
+    protected Observable createObservableUseCase(ArrayList<Article> articles) {
+        return Observable.fromCallable((Callable<Void>) () -> {
+            repository.setBookmarkedNews(articles);
             return null;
         });
     }
