@@ -9,7 +9,7 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 
-public class NewsArticleLocalDataSource implements NewsArticleDataStore {
+public class NewsArticleLocalDataStore implements NewsArticleDataStore {
 
     private ObservableEmitter<ArrayList<Article>> bookmaredNewsEmmiter;
 
