@@ -5,6 +5,7 @@ import com.rsa.cleannewsapp.core.data.entity.Article;
 import java.util.List;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -18,5 +19,8 @@ public interface ArticleDao {
 
     @Query("Select * from article")
     Flowable<List<Article>> getBookmarkedArticles();
+
+    @Delete
+    void delete(Article article);
 
 }

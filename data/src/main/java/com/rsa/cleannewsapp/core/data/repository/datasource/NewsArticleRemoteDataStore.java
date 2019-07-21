@@ -41,4 +41,9 @@ public class NewsArticleRemoteDataStore implements NewsArticleDataStore {
     public void addBookmarkedNews(Article bookmarkedNews) {
 
     }
+
+    @Override
+    public void deleteBookmarkNews(Article bookmarkedToDelete) {
+
+    }
 }

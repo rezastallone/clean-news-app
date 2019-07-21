@@ -45,10 +45,6 @@ public class HeadlineFragment extends BaseFragment implements HeadlineView {
 
     private NewsArticleAdapter bookmarkedNewsArticleAdapter;
 
-    private final Action<ArticleModel> onLongClick = articleToBookmark -> {
-        headlinePresenter.setBookmarkedNews(articleToBookmark);
-    };
-
     private NewsArticleAdapter newsArticleAdapter;
 
     @Nullable
@@ -106,11 +102,16 @@ public class HeadlineFragment extends BaseFragment implements HeadlineView {
     }
 
     private void initializeHeadlineAdapter() {
-        newsArticleAdapter = NewsArticleAdapter.newInstance(onClick, onLongClick);
+        newsArticleAdapter = NewsArticleAdapter.newInstance(onClick, articleToBookmark -> {
+            headlinePresenter.setBookmarkedNews(articleToBookmark);
+        });
     }
 
     private void initializeBookmarkedAdapter() {
-        bookmarkedNewsArticleAdapter = NewsArticleAdapter.newInstance(onClick, onLongClick);
+        bookmarkedNewsArticleAdapter = NewsArticleAdapter.newInstance(onClick,
+            articleModel -> {
+                headlinePresenter.removeBookmarkedNews(articleModel);
+            });
     }
 
     @Override

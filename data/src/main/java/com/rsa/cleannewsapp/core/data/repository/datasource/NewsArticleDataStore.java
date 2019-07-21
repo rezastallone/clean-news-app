@@ -14,4 +14,6 @@ public interface NewsArticleDataStore {
 
     void addBookmarkedNews(Article bookmarkedNews);
 
+    void deleteBookmarkNews(Article bookmarkedToDelete);
+
 }

@@ -62,4 +62,10 @@ public class DefaultNewsArticleRepository implements NewsArticleRepository {
         newsArticleLocalDataStore
             .addBookmarkedNews(articleDataToDomainMapper.transformBack(article));
     }
+
+    @Override
+    public void deleteBookmarkedNews(Article article) {
+        newsArticleLocalDataStore
+            .deleteBookmarkNews(articleDataToDomainMapper.transformBack(article));
+    }
 }
