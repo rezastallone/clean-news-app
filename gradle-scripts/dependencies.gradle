@@ -49,7 +49,8 @@ ext {
             butterKnife              : buildDependency(jakeWhartonPackage, 'butterknife', butterKnifeVersion),
             butterKnifeAnnotation    : buildDependency(jakeWhartonPackage, 'butterknife-compiler', butterKnifeVersion),
             glide                    : buildDependency(glidePackage, 'glide', glideVersion),
-            glideAnnotation          : buildDependency(glidePackage, 'compiler', glideVersion)
+            glideAnnotation          : buildDependency(glidePackage, 'compiler', glideVersion),
+            room                     : buildDependency('androidx.lifecycle', 'lifecycle-viewmodel', '2.0.0')
     ]
 
     testingDependencies = [
