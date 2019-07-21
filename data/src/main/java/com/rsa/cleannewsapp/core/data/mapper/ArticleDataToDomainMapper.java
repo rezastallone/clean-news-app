@@ -38,7 +38,8 @@ public class ArticleDataToDomainMapper {
             article.url,
             article.urlToImage,
             article.publishedAt,
-            article.content
+            article.content,
+            article.isBookmarked
         );
     }
 
@@ -51,7 +52,8 @@ public class ArticleDataToDomainMapper {
             article.url,
             article.urlToImage,
             article.publishedAt,
-            article.content
+            article.content,
+            article.isBookmarked
         );
     }
 
