@@ -14,4 +14,5 @@ public interface NewsArticleRepository {
 
     void setBookmarkedNews(Article article);
 
+    void deleteBookmarkedNews(Article article);
 }
