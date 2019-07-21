@@ -60,11 +60,8 @@ public class NewsArticleAdapter extends RecyclerView.Adapter<NewsArticleViewHold
         }
     }
 
-    public ArrayList<ArticleModel> getDataSet() {
-        return this.articles;
-    }
-
     public void setArticles(ArrayList<ArticleModel> articles) {
+        this.articles.clear();
         this.articles.addAll(articles);
         notifyDataSetChanged();
     }
