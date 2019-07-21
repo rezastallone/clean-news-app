@@ -26,10 +26,10 @@ public class SetBookmarkedNews extends CompletableUseCase<Article> {
     }
 
     @Override
-    protected Observable createObservableUseCase(Article articles) {
-        return Observable.fromCallable((Callable<Void>) () -> {
+    protected Observable<Object> createObservableUseCase(Article articles) {
+        return Observable.fromCallable((Callable<Boolean>) () -> {
             repository.setBookmarkedNews(articles);
-            return null;
+            return true;
         });
     }
 }
