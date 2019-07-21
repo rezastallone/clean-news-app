@@ -30,4 +30,9 @@ public class NewsArticleLocalDataStore implements NewsArticleDataStore {
     public void addBookmarkedNews(Article bookmarkedNews) {
         articleDao.insert(bookmarkedNews);
     }
+
+    @Override
+    public void deleteBookmarkNews(Article bookmarkedToDelete) {
+        articleDao.delete(bookmarkedToDelete);
+    }
 }

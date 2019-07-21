@@ -1,6 +1,7 @@
 package com.rsa.cleannewsapp.features.newsarticle.presenter;
 
 import com.rsa.cleannewsapp.core.domain.entity.Article;
+import com.rsa.cleannewsapp.core.domain.usecase.DeleteBookmarkedNews;
 import com.rsa.cleannewsapp.core.domain.usecase.GetBookmarkedNews;
 import com.rsa.cleannewsapp.core.domain.usecase.GetHeadline;
 import com.rsa.cleannewsapp.core.domain.usecase.SetBookmarkedNews;
@@ -19,6 +20,8 @@ import io.reactivex.observers.DisposableObserver;
 
 public class HeadlinePresenter extends Presenter<HeadlineView> {
 
+    private final DeleteBookmarkedNews deleteBookmarkedNews;
+
     private final GetBookmarkedNews getBookmarkedNews;
 
     private final SetBookmarkedNews setBookmarkedNews;
@@ -32,12 +35,14 @@ public class HeadlinePresenter extends Presenter<HeadlineView> {
         @NonNull GetHeadline getHeadline,
         @NonNull GetBookmarkedNews getBookmarkedNews,
         @NonNull SetBookmarkedNews setBookmarkedNews,
+        @NonNull DeleteBookmarkedNews deleteBookmarkedNews,
         ArticleModelDataMapper articleModelDataMapper
     ) {
         this.getHeadline = getHeadline;
-        this.articleModelDataMapper = articleModelDataMapper;
         this.getBookmarkedNews = getBookmarkedNews;
         this.setBookmarkedNews = setBookmarkedNews;
+        this.deleteBookmarkedNews = deleteBookmarkedNews;
+        this.articleModelDataMapper = articleModelDataMapper;
     }
 
     @Override
@@ -121,10 +126,31 @@ public class HeadlinePresenter extends Presenter<HeadlineView> {
             });
     }
 
+    public void removeBookmarkedNews(ArticleModel articleModel) {
+        deleteBookmarkedNews.execute(articleModelDataMapper.transformBack(articleModel),
+            new DisposableObserver() {
+                @Override
+                public void onNext(Object o) {
+
+                }
+
+                @Override
+                public void onError(Throwable e) {
+                    e.printStackTrace();
+                }
+
+                @Override
+                public void onComplete() {
+
+                }
+            });
+    }
+
     public void destroy() {
         this.getHeadline.dispose();
         this.getBookmarkedNews.dispose();
         this.setBookmarkedNews.dispose();
+        this.deleteBookmarkedNews.dispose();
         setView(null);
     }
 }
