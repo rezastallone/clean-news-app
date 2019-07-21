@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Clean News App</string>
+    <string name="title_headline_news">Headline News</string>
+    <string name="title_bookmarked_news">Bookmarked news</string>
 </resources>
