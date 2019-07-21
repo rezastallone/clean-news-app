@@ -3,7 +3,7 @@ package com.rsa.cleannewsapp.core.domain.usecase;
 import com.rsa.cleannewsapp.core.domain.entity.Article;
 import com.rsa.cleannewsapp.core.domain.repository.NewsArticleRepository;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -11,7 +11,7 @@ import javax.inject.Named;
 import io.reactivex.Observable;
 import io.reactivex.Scheduler;
 
-public class GetBookmarkedNews extends UseCase<ArrayList<Article>> {
+public class GetBookmarkedNews extends UseCase<List<Article>> {
 
     private NewsArticleRepository newsArticleRepository;
 
@@ -26,7 +26,7 @@ public class GetBookmarkedNews extends UseCase<ArrayList<Article>> {
     }
 
     @Override
-    protected Observable<ArrayList<Article>> createObservableUseCase() {
+    protected Observable<List<Article>> createObservableUseCase() {
         return newsArticleRepository.bookmarkedNews();
     }
 }

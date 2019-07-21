@@ -1,7 +1,6 @@
 package com.rsa.cleannewsapp.features.newsarticle.mapper;
 
 import com.rsa.cleannewsapp.core.domain.entity.Article;
-import com.rsa.cleannewsapp.core.domain.entity.Source;
 import com.rsa.cleannewsapp.features.newsarticle.model.ArticleModel;
 
 import java.util.ArrayList;
@@ -48,7 +47,7 @@ public class ArticleModelDataMapper {
             articleModelCollection = new ArrayList();
             for (ArticleModel articleModel : articles) {
                 Article article = new Article(
-                    new Source(articleModel.sourceName),
+                    articleModel.sourceName,
                     articleModel.author,
                     articleModel.title,
                     articleModel.description,
@@ -63,6 +62,19 @@ public class ArticleModelDataMapper {
             articleModelCollection = Collections.emptyList();
         }
         return articleModelCollection;
+    }
+
+    public Article transformBack(ArticleModel articleModel) {
+        return new Article(
+            articleModel.sourceName,
+            articleModel.author,
+            articleModel.title,
+            articleModel.description,
+            articleModel.url,
+            articleModel.urlToImage,
+            "",
+            ""
+        );
     }
 
 }

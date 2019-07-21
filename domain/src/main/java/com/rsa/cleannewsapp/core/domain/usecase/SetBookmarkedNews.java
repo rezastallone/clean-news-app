@@ -12,7 +12,7 @@ import javax.inject.Named;
 import io.reactivex.Observable;
 import io.reactivex.Scheduler;
 
-public class SetBookmarkedNews extends CompletableUseCase<ArrayList<Article>> {
+public class SetBookmarkedNews extends CompletableUseCase<Article> {
 
     private final NewsArticleRepository repository;
 
@@ -26,7 +26,7 @@ public class SetBookmarkedNews extends CompletableUseCase<ArrayList<Article>> {
     }
 
     @Override
-    protected Observable createObservableUseCase(ArrayList<Article> articles) {
+    protected Observable createObservableUseCase(Article articles) {
         return Observable.fromCallable((Callable<Void>) () -> {
             repository.setBookmarkedNews(articles);
             return null;

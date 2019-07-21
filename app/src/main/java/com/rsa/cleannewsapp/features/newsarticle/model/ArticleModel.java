@@ -30,7 +30,7 @@ public class ArticleModel {
         return new ArticleModel(
             article.author,
             article.description,
-            article.source.name,
+            article.sourceName,
             article.title,
             article.url,
             article.urlToImage
