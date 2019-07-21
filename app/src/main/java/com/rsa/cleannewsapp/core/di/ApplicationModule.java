@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import com.rsa.cleannewsapp.CleanNewsApplication;
+import com.rsa.cleannewsapp.core.data.local.AppDatabase;
 import com.rsa.cleannewsapp.core.data.remote.RemoteServiceFactory;
 import com.rsa.cleannewsapp.core.data.repository.DefaultNewsArticleRepository;
 import com.rsa.cleannewsapp.core.data.repository.datasource.NewsArticleLocalDataStore;
@@ -15,6 +16,7 @@ import android.content.Context;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
+import androidx.room.Room;
 import dagger.Module;
 import dagger.Provides;
 import io.reactivex.Scheduler;
@@ -51,8 +53,15 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    NewsArticleLocalDataStore provideNewsArticleLocalDataStore() {
-        return new NewsArticleLocalDataStore();
+    AppDatabase provideAppDatabase(Context context) {
+        return Room.databaseBuilder(context.getApplicationContext(),
+            AppDatabase.class, "clean-news").build();
+    }
+
+    @Provides
+    @Singleton
+    NewsArticleLocalDataStore provideNewsArticleLocalDataStore(AppDatabase appDatabase) {
+        return new NewsArticleLocalDataStore(appDatabase);
     }
 
     @Provides
