@@ -1,18 +1,17 @@
 package com.rsa.cleannewsapp.core.data.repository.datasource;
 
-import com.rsa.cleannewsapp.core.domain.entity.Article;
-import com.rsa.cleannewsapp.core.domain.entity.NewsArticles;
+import com.rsa.cleannewsapp.core.data.entity.Article;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import io.reactivex.Observable;
 
 public interface NewsArticleDataStore {
 
-    Observable<NewsArticles> headlines(String country);
+    Observable<List<Article>> headlines(String country);
 
-    Observable<ArrayList<Article>> getBookmarkedNews();
+    Observable<List<Article>> getBookmarkedNews();
 
-    void addBookmarkedNews(ArrayList<Article> bookmarkedNews);
+    void addBookmarkedNews(Article bookmarkedNews);
 
 }

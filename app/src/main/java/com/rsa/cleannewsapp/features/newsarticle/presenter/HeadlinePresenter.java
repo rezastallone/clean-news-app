@@ -1,7 +1,6 @@
 package com.rsa.cleannewsapp.features.newsarticle.presenter;
 
 import com.rsa.cleannewsapp.core.domain.entity.Article;
-import com.rsa.cleannewsapp.core.domain.entity.NewsArticles;
 import com.rsa.cleannewsapp.core.domain.usecase.GetBookmarkedNews;
 import com.rsa.cleannewsapp.core.domain.usecase.GetHeadline;
 import com.rsa.cleannewsapp.core.domain.usecase.SetBookmarkedNews;
@@ -11,6 +10,7 @@ import com.rsa.cleannewsapp.features.newsarticle.model.ArticleModel;
 import com.rsa.cleannewsapp.features.newsarticle.view.HeadlineView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -49,9 +49,10 @@ public class HeadlinePresenter extends Presenter<HeadlineView> {
     }
 
     private void executeGetBookmarkedNews() {
-        getBookmarkedNews.execute(new DisposableObserver<ArrayList<Article>>() {
+        getBookmarkedNews.execute(new DisposableObserver<List<Article>>() {
+
             @Override
-            public void onNext(ArrayList<Article> articles) {
+            public void onNext(List<Article> articles) {
                 showBookmarkedNews(articles);
             }
 
@@ -68,10 +69,11 @@ public class HeadlinePresenter extends Presenter<HeadlineView> {
     }
 
     private void executeGetHeadlines() {
-        getHeadline.execute(new DisposableObserver<NewsArticles>() {
+        getHeadline.execute(new DisposableObserver<List<Article>>() {
+
             @Override
-            public void onNext(NewsArticles newsArticles) {
-                showHeadlines(newsArticles);
+            public void onNext(List<Article> articles) {
+                showHeadlines(articles);
             }
 
             @Override
@@ -87,36 +89,36 @@ public class HeadlinePresenter extends Presenter<HeadlineView> {
         });
     }
 
-    private void showBookmarkedNews(ArrayList<Article> bookmarkedNews) {
-        getView().showBookmarkedNews((ArrayList<ArticleModel>) articleModelDataMapper
+    private void showBookmarkedNews(List<Article> bookmarkedNews) {
+        ArrayList<ArticleModel> articlesToShow = new ArrayList<>(articleModelDataMapper
             .transform(bookmarkedNews));
+        getView().showBookmarkedNews(articlesToShow);
     }
 
-    private void showHeadlines(NewsArticles newsArticles) {
-        getView().showHeadlines(
-            (ArrayList<ArticleModel>) articleModelDataMapper
-                .transform(newsArticles.articles));
+    private void showHeadlines(List<Article> newsArticles) {
+        ArrayList<ArticleModel> articlesToShow = new ArrayList(articleModelDataMapper
+            .transform(newsArticles));
+        getView().showHeadlines(articlesToShow);
     }
 
-    public void setBookmarkedNews(ArrayList<ArticleModel> articleModels) {
-        ArrayList<Article> articles = (ArrayList<Article>) articleModelDataMapper
-            .transformBack(articleModels);
-        setBookmarkedNews.execute(articles, new DisposableObserver() {
-            @Override
-            public void onNext(Object o) {
+    public void setBookmarkedNews(ArticleModel articleModel) {
+        setBookmarkedNews
+            .execute(articleModelDataMapper.transformBack(articleModel), new DisposableObserver() {
+                @Override
+                public void onNext(Object o) {
 
-            }
+                }
 
-            @Override
-            public void onError(Throwable e) {
+                @Override
+                public void onError(Throwable e) {
+                    e.printStackTrace();
+                }
 
-            }
+                @Override
+                public void onComplete() {
 
-            @Override
-            public void onComplete() {
-
-            }
-        });
+                }
+            });
     }
 
     public void destroy() {

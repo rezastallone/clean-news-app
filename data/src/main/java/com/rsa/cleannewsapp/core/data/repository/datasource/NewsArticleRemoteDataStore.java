@@ -1,12 +1,15 @@
 package com.rsa.cleannewsapp.core.data.repository.datasource;
 
+import com.rsa.cleannewsapp.core.data.entity.Article;
+import com.rsa.cleannewsapp.core.data.entity.NewsArticles;
 import com.rsa.cleannewsapp.core.data.remote.NewsApi;
-import com.rsa.cleannewsapp.core.domain.entity.Article;
-import com.rsa.cleannewsapp.core.domain.entity.NewsArticles;
 
-import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.functions.Function;
 import retrofit2.Retrofit;
 
 public class NewsArticleRemoteDataStore implements NewsArticleDataStore {
@@ -18,17 +21,24 @@ public class NewsArticleRemoteDataStore implements NewsArticleDataStore {
     }
 
     @Override
-    public Observable<NewsArticles> headlines(String country) {
-        return newsApi.headlines(country);
+    public Observable<List<Article>> headlines(String country) {
+        return newsApi.headlines(country).flatMap(
+            new Function<NewsArticles, ObservableSource<List<Article>>>() {
+                @Override
+                public ObservableSource<List<Article>> apply(
+                    NewsArticles newsArticles) throws Exception {
+                    return Observable.just((List<Article>) newsArticles.articles);
+                }
+            });
     }
 
     @Override
-    public Observable<ArrayList<Article>> getBookmarkedNews() {
-        return Observable.just(new ArrayList<Article>());
+    public Observable<List<Article>> getBookmarkedNews() {
+        return (Observable<List<Article>>) Collections.emptyList();
     }
 
     @Override
-    public void addBookmarkedNews(ArrayList<Article> bookmarkedNews) {
+    public void addBookmarkedNews(Article bookmarkedNews) {
 
     }
 }
