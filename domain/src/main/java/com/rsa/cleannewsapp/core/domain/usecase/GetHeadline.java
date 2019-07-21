@@ -28,7 +28,7 @@ public class GetHeadline extends UseCase<List<Article>> {
 
     @Override
     protected Observable<List<Article>> createObservableUseCase() {
-        return Observable.zip(this.newsArticleRepository.headlines("id"),
+        return Observable.combineLatest(this.newsArticleRepository.headlines("id"),
             this.newsArticleRepository.bookmarkedNews(),
             (articles, articles2) -> {
 
