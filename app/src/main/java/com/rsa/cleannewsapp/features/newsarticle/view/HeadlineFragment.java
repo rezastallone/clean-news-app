@@ -46,9 +46,7 @@ public class HeadlineFragment extends BaseFragment implements HeadlineView {
     private NewsArticleAdapter bookmarkedNewsArticleAdapter;
 
     private final Action<ArticleModel> onLongClick = articleToBookmark -> {
-        ArrayList<ArticleModel> existingBookmarked = bookmarkedNewsArticleAdapter.getDataSet();
-        existingBookmarked.add(articleToBookmark);
-        headlinePresenter.setBookmarkedNews(existingBookmarked);
+        headlinePresenter.setBookmarkedNews(articleToBookmark);
     };
 
     private NewsArticleAdapter newsArticleAdapter;

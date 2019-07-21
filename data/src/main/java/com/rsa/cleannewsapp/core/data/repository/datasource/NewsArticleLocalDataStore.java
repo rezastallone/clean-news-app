@@ -1,46 +1,33 @@
 package com.rsa.cleannewsapp.core.data.repository.datasource;
 
+import com.rsa.cleannewsapp.core.data.entity.Article;
 import com.rsa.cleannewsapp.core.data.local.AppDatabase;
-import com.rsa.cleannewsapp.core.domain.entity.Article;
-import com.rsa.cleannewsapp.core.domain.entity.NewsArticles;
+import com.rsa.cleannewsapp.core.data.local.ArticleDao;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
 
 public class NewsArticleLocalDataStore implements NewsArticleDataStore {
 
-    private final AppDatabase appDatabase;
-
-    private ObservableEmitter<ArrayList<Article>> bookmaredNewsEmmiter;
-
-    private Observable<ArrayList<Article>> bookmarkObservable = Observable
-        .create(new ObservableOnSubscribe<ArrayList<Article>>() {
-
-            @Override
-            public void subscribe(ObservableEmitter<ArrayList<Article>> emitter) throws Exception {
-                bookmaredNewsEmmiter = emitter;
-            }
-        });
+    private final ArticleDao articleDao;
 
     public NewsArticleLocalDataStore(AppDatabase appDatabase) {
-        this.appDatabase = appDatabase;
+        this.articleDao = appDatabase.articleDao();
     }
 
     @Override
-    public Observable<NewsArticles> headlines(String country) {
-        return Observable.just(NewsArticles.fromNothing());
+    public Observable<List<Article>> headlines(String country) {
+        return Observable.empty();
     }
 
     @Override
-    public Observable<ArrayList<Article>> getBookmarkedNews() {
-        return bookmarkObservable;
+    public Observable<List<Article>> getBookmarkedNews() {
+        return articleDao.getBookmarkedArticles().toObservable();
     }
 
     @Override
-    public void addBookmarkedNews(ArrayList<Article> bookmarkedNews) {
-        bookmaredNewsEmmiter.onNext(bookmarkedNews);
+    public void addBookmarkedNews(Article bookmarkedNews) {
+        articleDao.insert(bookmarkedNews);
     }
 }
