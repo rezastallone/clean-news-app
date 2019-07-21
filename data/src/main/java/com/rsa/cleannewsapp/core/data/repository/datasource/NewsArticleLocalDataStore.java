@@ -1,5 +1,6 @@
 package com.rsa.cleannewsapp.core.data.repository.datasource;
 
+import com.rsa.cleannewsapp.core.data.local.AppDatabase;
 import com.rsa.cleannewsapp.core.domain.entity.Article;
 import com.rsa.cleannewsapp.core.domain.entity.NewsArticles;
 
@@ -11,6 +12,8 @@ import io.reactivex.ObservableOnSubscribe;
 
 public class NewsArticleLocalDataStore implements NewsArticleDataStore {
 
+    private final AppDatabase appDatabase;
+
     private ObservableEmitter<ArrayList<Article>> bookmaredNewsEmmiter;
 
     private Observable<ArrayList<Article>> bookmarkObservable = Observable
@@ -21,6 +24,10 @@ public class NewsArticleLocalDataStore implements NewsArticleDataStore {
                 bookmaredNewsEmmiter = emitter;
             }
         });
+
+    public NewsArticleLocalDataStore(AppDatabase appDatabase) {
+        this.appDatabase = appDatabase;
+    }
 
     @Override
     public Observable<NewsArticles> headlines(String country) {
