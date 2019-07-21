@@ -3,6 +3,7 @@ package com.rsa.cleannewsapp.core.domain.usecase;
 import com.rsa.cleannewsapp.core.domain.entity.Article;
 import com.rsa.cleannewsapp.core.domain.repository.NewsArticleRepository;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -27,6 +28,10 @@ public class GetBookmarkedNews extends UseCase<List<Article>> {
 
     @Override
     protected Observable<List<Article>> createObservableUseCase() {
-        return newsArticleRepository.bookmarkedNews();
+        return newsArticleRepository.bookmarkedNews().map(
+            articles -> {
+                Collections.reverse(articles);
+                return articles;
+            });
     }
 }
