@@ -54,7 +54,8 @@ public class ArticleModelDataMapper {
                     articleModel.url,
                     articleModel.urlToImage,
                     "",
-                    ""
+                    "",
+                    articleModel.isBookmarked
                 );
                 articleModelCollection.add(article);
             }
@@ -73,7 +74,8 @@ public class ArticleModelDataMapper {
             articleModel.url,
             articleModel.urlToImage,
             "",
-            ""
+            "",
+            articleModel.isBookmarked
         );
     }
 
